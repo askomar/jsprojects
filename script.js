@@ -1,30 +1,17 @@
-/* Задание на урок:
-
-1) Создать переменную numberOfFilms и в неё поместить ответ от пользователя на вопрос:
-'Сколько фильмов вы уже посмотрели?'
-
-2) Создать объект personalMovieDB и в него поместить такие свойства:
-    - count - сюда передается ответ на первый вопрос
-    - movies - в это свойство поместить пустой объект
-    - actors - тоже поместить пустой объект
-    - genres - сюда поместить пустой массив
-    - privat - в это свойство поместить boolean(логическое) значение false
-
-3) Задайте пользователю по два раза вопросы:
-    - 'Один из последних просмотренных фильмов?'
-    - 'На сколько оцените его?'
-Ответы стоит поместить в отдельные переменные
-Записать ответы в объект movies в формате: 
-    movies: {
-        'logan': '8.1'
-    }
-
-Проверить, чтобы все работало без ошибок в консоли */
-
 'use strict';
 
 const numberOfFIlms = +prompt('Скольлко фильмов вы посмотрели?', '');
 
+if(numberOfFIlms < 10) {
+    alert("Просмотрено довольно мало фильмов");
+} else if (numberOfFIlms >= 10 && numberOfFIlms <= 30) {
+    alert("Вы классический зритель");
+} else if (numberOfFIlms >30) {
+    alert("Вы киноман");
+} else {
+    alert("Произошла ошибка");
+}
+ 
 const personalMovieDB = {
     count : numberOfFIlms,
     movies : {},
@@ -33,12 +20,17 @@ const personalMovieDB = {
     privat : false
 };
 
-const a = prompt('Одн из послежних просмотренных фильмов?', '');
-const b = prompt('На сколько оцените его?');
-const c = prompt('Одн из послежних просмотренных фильмов?', '');
-const d = prompt('На сколько оцените его?');
-
-personalMovieDB.movies[a] = b;
-personalMovieDB.movies[c] = d;
+let i = 0;
+while (i < 2) {
+    const a = prompt('Один из послежних просмотренных фильмов?', ''),
+    b = prompt('На сколько оцените его?');
+    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+        personalMovieDB.movies[a] = b;
+    } else {
+        i--;
+        console.log("error");
+    }
+    i++;
+};
 
 console.log(personalMovieDB);
